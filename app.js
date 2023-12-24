@@ -29,8 +29,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
-mongoose.connect(process.env.MONGO_URI, {
+const DATABASE_URL = process.env.CONNECTION_URL;
+mongoose.connect(DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // useCreateIndex: true,
