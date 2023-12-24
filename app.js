@@ -1,5 +1,6 @@
 //jshint esversion:6
 require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
@@ -10,6 +11,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 
+console.log(process.env.GOOGLE_CLIENT_ID);
 
 const app = express();
 
@@ -74,7 +76,7 @@ passport.use(
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "http://localhost:3000/auth/google/secrets",
-      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (request, accessToken, refreshToken, profile, done) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -83,6 +85,7 @@ passport.use(
     }
   )
 );
+
 
 app.get("/", function (req, res) {
   res.render("home");
