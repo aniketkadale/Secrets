@@ -12,7 +12,6 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 
-console.log(process.env.GOOGLE_CLIENT_ID);
 
 const app = express();
 
